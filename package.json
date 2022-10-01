@@ -1,0 +1,78 @@
+{
+    "name": "cache-eight",
+    "version": "0.11.0-alpha",
+    "main": "dist/index.js",
+    "source": "./src/index.ts",
+    "types": "dist/types.d.ts",
+    "repository": "https://github.com/reaxi/cache-eight",
+    "author": {
+        "name": "Andrew Colman"
+    },
+    "keywords": [
+        "node",
+        "package",
+        "cache",
+        "v8",
+        "json cache"
+    ],
+    "license": "MIT",
+    "scripts": {
+        "prepublishOnly": "npm run build",
+        "prebuild": "rimraf ./dist",
+        "build": "rollup --config rollup.config.js",
+        "build:quick": "sucrase ./src -d ./dist --transforms typescript,imports",
+        "dev": "nodemon ./src/index.ts ",
+        "predev:compiled": "yarn build:quick",
+        "dev:compiled": "node dist/index.js",
+        "test": "jest ",
+        "test:verbose": "jest --verbose",
+        "test:watch": "jest --watch",
+        "prepare": "husky install",
+        "lint": "eslint --cache --fix",
+        "format": "prettier --write"
+    },
+    "devDependencies": {
+        "@rollup/plugin-commonjs": "^21.0.1",
+        "@rollup/plugin-node-resolve": "^13.0.4",
+        "@rollup/plugin-typescript": "^8.2.5",
+        "@swc/core": "^1.2.145",
+        "@swc/jest": "^0.2.20",
+        "@types/crypto-js": "^4.1.1",
+        "@types/fs-extra": "^9.0.13",
+        "@types/jest": "^27.0.1",
+        "@types/node": "^16.11.2",
+        "@typescript-eslint/eslint-plugin": "^5.12.1",
+        "@typescript-eslint/parser": "^5.12.1",
+        "eslint": "^7.32.0",
+        "eslint-config-prettier": "^8.4.0",
+        "eslint-config-standard": "^16.0.3",
+        "eslint-plugin-import": "^2.25.4",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-prettier": "^4.0.0",
+        "eslint-plugin-promise": "^5.2.0",
+        "husky": "^7.0.4",
+        "jest": "^27.0.6",
+        "jsonc-require": "^1.0.1",
+        "lint-staged": "^12.3.4",
+        "memfs": "^3.4.1",
+        "nodemon": "^2.0.15",
+        "prettier": "^2.5.1",
+        "rimraf": "^3.0.2",
+        "rollup": "^2.56.2",
+        "rollup-plugin-delete": "^2.0.0",
+        "rollup-plugin-dts": "^4.2.0",
+        "rollup-plugin-terser": "^7.0.2",
+        "sucrase": "^3.20.1",
+        "ts-jest": "^27.0.4",
+        "tslib": "^2.3.1",
+        "typescript": "^4.3.5"
+    },
+    "dependencies": {
+        "crypto-js": "^4.1.1",
+        "fs-extra": "^10.0.1"
+    },
+    "lint-staged": {
+        "*.{js,ts}": "npm run lint",
+        "*.{js,ts,css,md}": "npm run format"
+    }
+}
